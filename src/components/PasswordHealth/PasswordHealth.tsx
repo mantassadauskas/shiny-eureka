@@ -47,7 +47,7 @@ const PasswordHealth = () => {
           <List items={items.filter((item) => itemHasReusedPassword(item, items))}/>
         </Route>
         <Route path={Routes.Old}>
-          <List items={items.filter((item) => itemHasOldPassword(item, items))}/>
+          <List items={items.filter((item) => itemHasOldPassword(item))}/>
         </Route>
       </Switch>
     </div>
