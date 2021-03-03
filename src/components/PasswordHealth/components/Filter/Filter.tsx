@@ -21,7 +21,7 @@ const Filter: FC<IFilter> = ({items}) => {
     <div className="filter">
       <FilterTab title="Weak" count={weakItemsCount} path={Routes.Weak}/>
       <FilterTab title="Reused" count={reusedItemsCount} path={Routes.Reused}/>
-      <FilterTab title="Reused" count={oldItemsCount} path={Routes.Old}/>
+      <FilterTab title="Old" count={oldItemsCount} path={Routes.Old}/>
     </div>
   );
 };
