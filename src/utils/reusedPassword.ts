@@ -1,6 +1,6 @@
 import {IItem} from '~/services/getUserItems';
 
-export const reusedPassword = (item: IItem, itemList: Array<IItem>) => {
+export const itemHasReusedPassword = (item: IItem, itemList: Array<IItem>) => {
   const reusedItems = itemList.filter((listItem) => (
     listItem.password === item.password
   ))
@@ -9,5 +9,5 @@ export const reusedPassword = (item: IItem, itemList: Array<IItem>) => {
 };
 
 export const getReusedPasswordsCount = (items: IItem[]) => items.reduce((count, item) => (
-  reusedPassword(item, items) ? (count + 1) : count
+  itemHasReusedPassword(item, items) ? (count + 1) : count
 ), 0)
