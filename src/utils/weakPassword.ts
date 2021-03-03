@@ -1,6 +1,6 @@
 import {IItem} from "~/services/getUserItems";
 
-const itemHasWeakPassword = (item: IItem) => {
+export const weakPassword = (item: IItem) => {
   const { password } = item;
 
   const strength = [
@@ -13,4 +13,6 @@ const itemHasWeakPassword = (item: IItem) => {
   return strength > 2;
 };
 
-export default itemHasWeakPassword;
+export const getWeakPasswordsCount = (items : IItem[]) => items.reduce((count, item) => (
+  weakPassword(item) ? (count + 1) : count
+), 0)
