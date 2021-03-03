@@ -1,6 +1,6 @@
-import {SyntheticEvent, useState} from 'react';
-import {useHistory} from 'react-router-dom';
-import {Routes} from '~/constants';
+import { SyntheticEvent, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Routes } from '~/constants';
 import login from '~/services/login';
 import ErrorBlock from '../ErrorBlock';
 
@@ -15,6 +15,10 @@ const Login = () => {
   const handleSubmit = async (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
     setErrorMessage(null);
+
+    if (!username.length || !password.length) {
+      return setErrorMessage('Please fill both fields');
+    }
 
     try {
       await login(username, password);
@@ -36,6 +40,7 @@ const Login = () => {
           placeholder="Username"
           type="text"
           className="input mt-52px"
+          minLength={5}
         />
         <input
           value={password}
@@ -43,6 +48,7 @@ const Login = () => {
           placeholder="Password"
           type="password"
           className="input mt-24px"
+          minLength={5}
         />
         <ErrorBlock error={errorMessage}/>
         <button type="submit" className="button mt-24px">
