@@ -33,6 +33,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}
         contentLabel="Example Modal"
+        appElement={document.body}
       >
         <h1>Update Password</h1>
         <input
