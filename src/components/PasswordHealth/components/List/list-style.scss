@@ -7,10 +7,12 @@
   margin: 0;
 
   .item {
+    margin: 0 32px;
     min-height: 32px;
     border-bottom: 1px solid $grey-light;
     padding: 12px 6px;
     display: flex;
+    flex-wrap: wrap;
 
     .item-icon {
       color: white;
@@ -32,7 +34,11 @@
 
     .update {
       margin-left: auto;
-      margin-right: 32px;
+      @media (max-width: 768px) {
+        width: 80%;
+        padding: 12px;
+        margin: 8px auto 0 auto;
+      }
     }
 
     &:hover {

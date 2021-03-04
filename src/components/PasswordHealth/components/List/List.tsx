@@ -1,10 +1,11 @@
-import {FC, useState} from 'react';
-import {IItem} from "~/services/getUserItems";
+import { FC, useEffect, useState } from 'react';
+import { IItem } from '~/services/getUserItems';
 import ItemIcon from './components/ItemIcon';
 import updateItem from '../../../../services/updateItem';
 import Modal from 'react-modal';
 
 import './list-style.scss';
+import { disableScroll } from '~/utils/modal';
 
 interface IList {
   items: Array<IItem>,
@@ -18,6 +19,8 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
   const [showModal, setShowModal] = useState(false);
   const [newPass, setNewPass] = useState('');
 
+  useEffect(() => disableScroll(showModal));
+
   return (
     <>
       <button className="update" onClick={() => setShowModal(true)}>
@@ -28,6 +31,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
         isOpen={showModal}
         onRequestClose={() => setShowModal(false)}
         contentLabel="Example Modal"
+        appElement={document.body}
       >
         <h1>Update Password</h1>
         <input
@@ -36,14 +40,13 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
           value={newPass}
           onChange={(event) => setNewPass(event.target.value)} 
         />
-        <div className="pt-12px text-center">
+        <div className="pt-12px text-center flex-center">
           <button className="button" onClick={async () => {
             await updateItem({
               ...item,
               password: newPass,
             })
-
-            window.location.reload();
+            setShowModal(false)
           }}>Change</button>
           <button className="button ml-12px" onClick={() => {
             setNewPass('');
@@ -61,7 +64,7 @@ const List: FC<IList> = ({items}) => (
   <ul className="list">
     {
       items.map((item) => (
-        <li className="item">
+        <li className="item" key={item.id}>
           <ItemIcon title={item.title}/>
           <div>
             <div className="title">
