@@ -5,6 +5,7 @@ import updateItem from '../../../../services/updateItem';
 import Modal from 'react-modal';
 
 import './list-style.scss';
+import { disableScroll } from '~/utils/modal';
 
 interface IList {
   items: Array<IItem>,
@@ -18,10 +19,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
   const [showModal, setShowModal] = useState(false);
   const [newPass, setNewPass] = useState('');
 
-  useEffect(() => {
-    showModal ? document.body.style.overflow = 'hidden' :
-                document.body.style.overflow = 'unset'
-  });
+  useEffect(() => disableScroll(showModal));
 
   return (
     <>
