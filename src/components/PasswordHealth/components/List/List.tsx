@@ -1,5 +1,5 @@
-import {FC, useState} from 'react';
-import {IItem} from "~/services/getUserItems";
+import { FC, useEffect, useState } from 'react';
+import { IItem } from '~/services/getUserItems';
 import ItemIcon from './components/ItemIcon';
 import updateItem from '../../../../services/updateItem';
 import Modal from 'react-modal';
@@ -17,6 +17,11 @@ interface IUpdateModal {
 const UpdateModal: FC<IUpdateModal> = ({ item }) => {
   const [showModal, setShowModal] = useState(false);
   const [newPass, setNewPass] = useState('');
+
+  useEffect(() => {
+    showModal ? document.body.style.overflow = 'hidden' :
+                document.body.style.overflow = 'unset'
+  });
 
   return (
     <>
@@ -36,7 +41,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
           value={newPass}
           onChange={(event) => setNewPass(event.target.value)} 
         />
-        <div className="pt-12px text-center">
+        <div className="pt-12px text-center flex-center">
           <button className="button" onClick={async () => {
             await updateItem({
               ...item,
