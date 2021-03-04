@@ -13,20 +13,29 @@ html, body, #app {
   text-align: center;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
 .input {
   height: 32px;
+  padding-left: 8px;
 }
 
 .button {
   border-width: 0;
   border-color: $teal;
   background-color: $teal;
-  border-radius: 9999px;
+  border-radius: 4px;
   cursor: pointer;
   color: white;
-  padding: 12px 6px;
+  padding: 12px;
   font-weight: bold;
   font-size: 16px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .loading-screen {
@@ -43,4 +52,8 @@ html, body, #app {
   flex-direction: column;
   left: 40%;
   top: 38%;
+  @media (max-width: 768px) {
+    width: auto;
+    left: 0;
+  }
 }
