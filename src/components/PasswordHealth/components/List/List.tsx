@@ -42,8 +42,7 @@ const UpdateModal: FC<IUpdateModal> = ({ item }) => {
               ...item,
               password: newPass,
             })
-
-            window.location.reload();
+            setShowModal(false)
           }}>Change</button>
           <button className="button ml-12px" onClick={() => {
             setNewPass('');
