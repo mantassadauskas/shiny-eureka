@@ -1,28 +1,8 @@
 import { itemHasWeakPassword } from '../weakPassword';
-import { IItem } from '../../services/getUserItems';
+import { items } from '../../fixtures';
 
-// Todo fix problem that causes this test to fail
-describe('should return true if password do not match requirements', () => {
-  test.each([
-    [
-      true,
-      {
-        password: 'pass',
-      }
-    ],
-    [
-      false,
-      {
-        password: 'Password123~',
-      }
-    ],
-    [
-      true,
-      {
-        password: 'Password',
-      }
-    ]
-  ])('should return %s', (expectedResult, item) => {
-    expect(itemHasWeakPassword(item as IItem)).toBe(expectedResult);
-  })
+test('should return true if password do not match requirements', () => {
+  expect(itemHasWeakPassword(items[0])).toBe(true);
+  expect(itemHasWeakPassword(items[1])).toBe(false);
+  expect(itemHasWeakPassword(items[2])).toBe(true);
 });
